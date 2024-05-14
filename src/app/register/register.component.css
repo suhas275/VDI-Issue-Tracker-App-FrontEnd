@@ -1,0 +1,16 @@
+.container1{
+    margin-top: -5%;
+    margin-bottom: -7%;
+    margin-right: -3%;
+    margin-left: -3%;
+}
+.vh-10{
+    border-color: #f0f0f0;
+    /* background-color:#f0f0f0;  */
+    margin-left: 27%;
+    /* margin-right: 10%;
+    margin-top: -2%; */
+    padding: 2%;
+    justify-items: center;
+    width: 50%;
+}
