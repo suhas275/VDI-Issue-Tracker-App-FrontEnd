@@ -1,0 +1,34 @@
+
+<div class="table-container">
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>SL.No</th>
+        <th>Associate</th>
+        <th>Issue</th>
+        <th>Issue Type</th>
+        <th>Status</th>
+        <th>Date</th>
+        <th>Time</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let issue of issues">
+        <td>{{ issue.slNo }}</td>
+        <td>{{ issue.associate }}</td>
+        <td>{{ issue.issue }}</td>
+        <td>{{ issue.issueType }}</td>
+        <td>{{ issue.status }}</td>
+        <td>{{ issue.date }}</td>
+        <td>{{ issue.time }}</td>
+        <td>
+          <button class="btn btn-primary btn-sm" (click)="editIssue(issue)">Edit</button>
+          <button class="btn btn-danger btn-sm" (click)="deleteIssue(issue)">Delete</button>
+          <button class="btn btn-info btn-sm" routerLink="/viewissue">View</button>
+        </td>
+        
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,40 @@
+Color of the links BEFORE scroll
+.navbar-scroll .nav-link,
+.navbar-scroll .fa-bars,
+.navbar-scroll .navar-brand {
+  color:  #084896;
+}
+.navbar-scroll .nav-link:hover {
+  color: #f8f9fa;
+}
+/* Color of the links AFTER scroll */
+.navbar-scrolled .nav-link,
+.navbar-scrolled .fa-bars,
+.navbar-scrolled .navar-brand {
+  color:  #dddbdb;
+}
+.navbar-nav{
+  font-size: 17px;
+}
+/* Color of the navbar AFTER scroll */
+.navbar-scroll,
+.navbar-scrolled {
+  background-color: #bcc5cd;
+}
+/* An optional height of the navbar AFTER scroll */
+.navbar.navbar-scroll.navbar-scrolled {
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+/* Add a shadow below the navbar */
+.navbar {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+/* Increase the font size for login and register links */
+.nav-link {
+  font-size: 18px;
+}
+body {
+  background-color: #eee;
+}
+

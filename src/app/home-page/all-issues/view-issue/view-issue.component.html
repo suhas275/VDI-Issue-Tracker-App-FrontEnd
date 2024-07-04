@@ -1,0 +1,69 @@
+
+    <div class="container mt-5">
+        <h1>Report an Issue</h1>
+        <form>
+            <div class="form-group">
+                <label for="associateId">Associate ID</label>
+                <input type="text" class="form-control" id="associateId" name="associateId">
+            </div>
+            <div class="form-group">
+                <label for="issueType">Issue Type</label>
+                <select class="form-control" id="issueType" name="issueType">
+                    <option value="Bug">Bug</option>
+                    <option value="Feature Request">Feature Request</option>
+                    <!-- Add more options as needed -->
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="issueDescription">Issue Description</label>
+                <textarea class="form-control" id="issueDescription" name="issueDescription" rows="3"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="summary">Summary of Issue</label>
+                <input type="text" class="form-control" id="summary" name="summary">
+            </div>
+            <div class="form-group">
+                <label for="sourceIp">Source IP</label>
+                <input type="text" class="form-control" id="sourceIp" name="sourceIp">
+            </div>
+            <div class="form-group">
+                <label for="destinationIp">Destination IP</label>
+                <input type="text" class="form-control" id="destinationIp" name="destinationIp">
+            </div>
+            <div class="form-group">
+                <label for="vpn">VPN</label>
+                <input type="text" class="form-control" id="vpn" name="vpn">
+            </div>
+            <div class="form-group">
+                <label for="connectivityMode">Mode of Connectivity</label>
+                <input type="text" class="form-control" id="connectivityMode" name="connectivityMode">
+            </div>
+            <div class="form-group">
+                <label for="usersImpacted">Number of Users Impacted</label>
+                <input type="number" class="form-control" id="usersImpacted" name="usersImpacted">
+            </div>
+            <div class="form-group">
+                <label for="status">Status</label>
+                <input type="text" class="form-control" id="status" name="status">
+            </div>
+            <div class="form-group">
+                <label for="dateTime">Date and Time</label>
+                <input type="datetime-local" class="form-control" id="dateTime" name="dateTime">
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+
+        <!-- Comment section -->
+        <div class="mt-4">
+            <h3>Comments</h3>
+            <div class="card">
+                <div class="card-body">
+                    <textarea class="form-control" rows="3" placeholder="Add your comment"></textarea>
+                    <button class="btn btn-secondary mt-2">Add Comment</button>
+                </div>
+            </div>
+            <!-- Display existing comments here (if any) -->
+            
+        </div>
+    </div>
+

@@ -1,24 +1,20 @@
-import { User } from '../services/user'; 
+import { Component } from '@angular/core';
+import { User } from '../../services/user';
 import { CommonModule, JsonPipe } from '@angular/common';
-import {  FormsModule, NgForm} from '@angular/forms';
-import { UserservieService } from '../services/user-service.service'; 
-import { Component, } from '@angular/core';
-import { Router } from '@angular/router';
-
+import {  FormBuilder, FormsModule, NgForm} from '@angular/forms';
+import { UserservieService } from '../../services/user-service.service';
 @Component({
-  selector: 'app-register',
+  selector: 'app-raise-issue',
   standalone: true,
-  imports: [FormsModule, CommonModule,JsonPipe, ],
-  templateUrl: './register.component.html',
-  styleUrl: './register.component.css',
+  imports: [CommonModule,FormsModule,JsonPipe],
+  templateUrl: './raise-issue.component.html',
+  styleUrl: './raise-issue.component.css'
 })
-
-export class RegisterComponent {
- 
+export class RaiseIssueComponent {
   user: User = new User();
-  constructor(private userservieService: UserservieService,private router: Router ) {}
- // successmessage
- showsuccessMessage = false;
+  constructor(private userservieService: UserservieService ) {}
+// successmessage
+showsuccessMessage = false;
   userregister() {
     console.log(this.user);
     this.userservieService.registeruser(this.user);
@@ -29,7 +25,7 @@ isFormSubmited: boolean = false ;
 
   User: any = {
     associateId:'',
-    firstName: '',
+    issueType: '',
     lastName: '',
     email:'',
     contactNumber:'',
@@ -37,6 +33,10 @@ isFormSubmited: boolean = false ;
     password:'', 
     confirmPassword:''
   }
+
+  // password validation
+ 
+  
 
 // PASSWORD field validation
 
@@ -64,19 +64,18 @@ isFormSubmited: boolean = false ;
   hasMinimumLength(): boolean {
     return this.myInputValue.length >= 8;
   }
-// password
+
 
 
   onSubmit(form: NgForm) {
-    const isFormValid = form.valid;
+    // debugger;
+    const isFormValid = form.form.valid;
     this.isFormSubmited = true;
-      this.showsuccessMessage= false;
-        this.showsuccessMessage= true;
-        setTimeout(() => {
-          this.router.navigate(['/login']); // Redirect to home page after delay
-        }, 2000); // Set delay to 1 seconds (1000 milliseconds)
-    }
+    this.showsuccessMessage= true;
+    setTimeout(() => {
+      this.showsuccessMessage = false;
+    }, 2000); // 2 seconds in milliseconds
   }
 
 
-
+}

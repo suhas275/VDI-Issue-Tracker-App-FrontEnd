@@ -1,0 +1,56 @@
+
+<nav class="navbar navbar-expand-lg fixed-top navbar-scroll">
+  <div class="container">
+    <img src="/assets/cts-logo.png" height="40" alt="CTS Logo" />
+    <button class="navbar-toggler ps-0" type="button" data-mdb-toggle="collapse" data-mdb-target="#navbarExample01">
+      <span class="navbar-toggler-icon d-flex justify-content-start align-items-center">
+        <i class="fas fa-bars"></i>
+      </span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarExample01">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <li *ngIf="isLoggedIn">
+          <a class="nav-link" routerLink="/login" [attr.disabled]="isLoggedIn">Login</a>
+        </li>
+        <li *ngIf="isLoggedIn">
+          <a class="nav-link" routerLink="/register" [attr.disabled]="isLoggedIn">Register</a>
+        </li>
+        <li *ngIf="!isLoggedIn">
+          <a class="nav-link" routerLink="/homepage">HomePage</a>
+        </li>
+        <li *ngIf="!isLoggedIn">
+          <a class="nav-link" routerLink="/raiseissue">RaiseIssue</a>
+        </li>
+        <li *ngIf="!isLoggedIn">
+          <a class="nav-link" routerLink="/allusers">AllUsers</a>
+        </li>
+        <li *ngIf="!isLoggedIn">
+          <a class="nav-link" routerLink="/allissues">AllIssues</a>
+        </li>
+        <li *ngIf="!isLoggedIn">
+          <a class="nav-link" routerLink="/login" [attr.disabled]="isLoggedIn" (click)="logout()">Logout</a>
+        </li>
+      </ul> 
+    </div>
+  </div>
+</nav>
+
+
+<!-- ........................................................... -->
+<!-- <nav class="navbar nhavbar-expand-md navbar-dark bg-dark">
+  <a class="navbar-brand" routerLink="/" style="margin-left: 10px; font-size: 22px;padding-top: 1px; padding-bottom: 1px;color:white;">VDI</a>
+  <div class="collapse navbar-collapse">
+  <ul class="navbar-nav mr-auto">
+  <li class="nav-item"   *ngIf="isLoggedIn"><a class="nav-link" routerLink="/homepage">Home</a></li>
+  <li class="nav-item" *ngIf="isLoggedIn"><a class="nav-link" routerLink="/raiseissue">Raise Issue</a></li>
+  <li class="nav-item" *ngIf="isLoggedIn"><a class="nav-link" routerLink="/allissues">All Issues</a></li>
+  <li class="nav-item" *ngIf="isLoggedIn"><a class="nav-link" routerLink="/allusers">All Users</a></li>
+  </ul>
+  <ul class="navbar-nav ms-auto">
+  <li class="nav-item" style="margin-right: 5px" *ngIf="isLoggedIn"><a class="nav-link" routerLink="/profile">Profile</a></li>
+  <li class="nav-item" style="margin-right: 10px" *ngIf="isLoggedIn"><a class="nav-link" (click)="logout()">Logout</a></li>
+  <li class="nav-item"  style="margin-right: 10px"  *ngIf="!isLoggedIn"><a class="nav-link" routerLink="/login">Login</a></li>
+  <li class="nav-item" style="margin-right: 15px" *ngIf="!isLoggedIn"><a class="nav-link" routerLink="/register">Register</a></li>
+  </ul>
+  </div>
+  </nav> -->

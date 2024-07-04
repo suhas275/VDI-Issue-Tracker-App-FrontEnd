@@ -1,16 +1,5 @@
-<header class="header">
-  <div class="container">
-    <img class="logo" src="/assets/cts-logo.png" alt="Logo">
-    <div class="actions">
-      <button routerLink="/login-component">Login</button>
-      <button routerLink="/register-component">Register</button>
-    </div>
-  </div>
-</header>
-  
+<div class="container">
 
-  <!-- The routed views render in the <router-outlet>-->
-<a routerLink="/login-component" routerLinkActive="active" ariaCurrentWhenActive="page"></a>
-<a routerLink="/register-component" routerLinkActive="active" ariaCurrentWhenActive="page"></a>
-
-    <router-outlet></router-outlet>
+    <app-navbar></app-navbar>
+</div>
+<router-outlet></router-outlet>
