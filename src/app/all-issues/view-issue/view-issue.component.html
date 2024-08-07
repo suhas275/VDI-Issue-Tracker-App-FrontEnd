@@ -1,0 +1,105 @@
+   <div class="container mt-5">
+    <div class="row">
+        <div class="col-md-8">
+            <h2 class="text-center">View Issue</h2>
+            <div *ngIf="issue">
+                <div class="form-group row">
+                    <label for="associateId" class="col-sm-4 col-form-label">Associate ID</label>
+                    <div class="col-sm-8">
+                        <input type="text" id="associateId" class="form-control" [(ngModel)]="issue.associateId" name="associateId" readonly />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="issueType" class="col-sm-4 col-form-label">Issue Type</label>
+                    <div class="col-sm-8">
+                        <input type="text" id="issueType" class="form-control" [(ngModel)]="issue.issueType" name="issueType" readonly />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="issueSummary" class="col-sm-4 col-form-label">Summary of Issue</label>
+                    <div class="col-sm-8">
+                        <input type="text" id="issueSummary" class="form-control" [(ngModel)]="issue.issueSummary" name="issueSummary" readonly />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="description" class="col-sm-4 col-form-label">Issue Description</label>
+                    <div class="col-sm-8">
+                        <textarea id="description" class="form-control" [(ngModel)]="issue.description" name="description" readonly></textarea>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="sourceIP" class="col-sm-4 col-form-label">Source IP</label>
+                    <div class="col-sm-8">
+                        <input type="text" id="sourceIP" class="form-control" [(ngModel)]="issue.sourceIP" name="sourceIP" readonly />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="destinationIP" class="col-sm-4 col-form-label">Destination IP</label>
+                    <div class="col-sm-8">
+                        <input type="text" id="destinationIP" class="form-control" [(ngModel)]="issue.destinationIP" name="destinationIP" readonly />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="vpn" class="col-sm-4 col-form-label">VPN</label>
+                    <div class="col-sm-8">
+                        <input type="text" id="vpn" class="form-control" [(ngModel)]="issue.vpn" name="vpn" readonly />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="connectivity" class="col-sm-4 col-form-label">Mode Of Connectivity</label>
+                    <div class="col-sm-8">
+                        <input type="text" id="connectivity" class="form-control" [(ngModel)]="issue.connectivity" name="connectivity" readonly />
+                    </div>
+                </div>
+            
+                <div class="form-group row">
+                  <label for="impactes" class="col-sm-4 col-form-label">No Of Users Impacted</label>
+                  <div class="col-sm-8">
+                      <input type="text" id="impactes" class="form-control" [(ngModel)]="issue.impactes" name="impactes" [ngClass]="{'red-text': issue.impactes > 5}" readonly />
+                  </div>
+              </div>
+              
+                <div class="form-group row">
+                    <label for="status" class="col-sm-4 col-form-label">Status</label>
+                    <div class="col-sm-8">
+                        <input type="text" id="status" class="form-control" [(ngModel)]="issue.status" name="status" readonly />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="datetime" class="col-sm-4 col-form-label">Date and Time</label>
+                    <div class="col-sm-8">
+                        <input type="text" id="datetime" class="form-control" [(ngModel)]="issue.datetime" name="datetime" readonly />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <h3 class="mt-4">Add Comment</h3>
+            <form (ngSubmit)="addComment()">
+                <div class="form-group">
+                    <label for="commentText">Comment</label>
+                    <textarea id="commentText" class="form-control" [(ngModel)]="newComment.text" name="commentText" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="sameIssue">Are you facing the same issue?</label>
+                    <input type="checkbox" id="sameIssue" [(ngModel)]="newComment.sameIssue" name="sameIssue" />
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+
+    <h3 class="mt-4">Comments <span class="comment-count">{{ comments.length }}</span></h3>
+    <div *ngFor="let comment of comments" class="comment-box">
+       
+        <div class="form-group">
+            <label for="commentDateTime">Date and Time</label>
+            <input type="text" id="commentDateTime" class="form-control" [(ngModel)]="comment.datetime" name="commentDateTime" readonly />
+        </div>
+        <div class="form-group">
+            <label for="commentText">Comment</label>
+            <textarea id="commentText" class="form-control" [(ngModel)]="comment.text" name="commentText" readonly></textarea>
+        </div>
+    </div>
+</div>

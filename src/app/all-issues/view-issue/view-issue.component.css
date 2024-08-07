@@ -1,0 +1,84 @@
+/* Container styling */
+.container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
+    background-color: #f8f9fa; /* Light background color */
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle box shadow */
+}
+
+/* Form group styling */
+.form-group {
+    margin-bottom: 15px;
+}
+
+/* Label styling */
+.col-form-label {
+    font-weight: bold;
+    color: #333; /* Darker text color */
+}
+
+/* Input and textarea styling */
+.form-control {
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+/* Button styling */
+.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+    color: #fff;
+    border-radius: 5px;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #004085;
+}
+
+/* Comment box styling */
+.comment-box {
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #e9ecef; /* Light grey background for comments */
+    border-radius: 5px;
+}
+
+/* Comment section heading */
+h3.mt-4 {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Comment count badge */
+.comment-count {
+    /* background-color: #171818; */
+    color: #999797;
+    /* border-radius: 50%; */
+    /* padding: 5px 10px; */
+    font-size: 14px;
+    margin-right: 10px;
+}
+
+/* Additional styling for the form */
+textarea.form-control {
+    resize: none;
+}
+
+/* Styling for the comment form */
+#commentText {
+    height: 100px;
+}
+
+/* Styling for the checkbox */
+#sameIssue {
+    margin-left: 10px;
+}
+/* no of impacts above 5 */
+.red-text {
+    color: red;
+}

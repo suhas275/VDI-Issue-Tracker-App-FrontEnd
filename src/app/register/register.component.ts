@@ -14,15 +14,40 @@ import { Router } from '@angular/router';
 })
 
 export class RegisterComponent {
- 
-  user: User = new User();
-  constructor(private userservieService: UserservieService,private router: Router ) {}
- // successmessage
- showsuccessMessage = false;
-  userregister() {
-    console.log(this.user);
-    this.userservieService.registeruser(this.user);
-  }
+
+user: User = new User();
+showSuccessMessage = false;
+showErrorForDuplicateUser = false;
+
+constructor(private userservieService: UserservieService, private router: Router) {}
+
+userregister() {
+  this.userservieService.registerUser(this.user)
+    .subscribe(
+      (response) => {
+        // this.userservieService.setRegisteredAssociateId(this.user.associateId);// Store associateId
+    
+        console.log('User registered successfully:', response);
+        this.showSuccessMessage = true;
+        // Reset form or clear data as needed
+        setTimeout(() => {
+          this.showSuccessMessage = false;
+          this.router.navigate(['/login']); // Redirect to login page after successful registration
+        }, 2000);
+      },
+      (error) => {
+        console.error('Error registering user:', error);
+        if (error.error.msg === 'Username already exists' || error.error.msg === 'Email already exists') {
+          this.showErrorForDuplicateUser = true;
+          setTimeout(() => {
+            this.showErrorForDuplicateUser = false;
+          }, 4000);
+        } else {
+          // Handle other errors
+        }
+      }
+    );
+}
 
   // template forms validation
 isFormSubmited: boolean = false ;
@@ -69,12 +94,7 @@ isFormSubmited: boolean = false ;
 
   onSubmit(form: NgForm) {
     const isFormValid = form.valid;
-    this.isFormSubmited = true;
-      this.showsuccessMessage= false;
-        this.showsuccessMessage= true;
-        setTimeout(() => {
-          this.router.navigate(['/login']); // Redirect to home page after delay
-        }, 2000); // Set delay to 1 seconds (1000 milliseconds)
+   
     }
   }
 

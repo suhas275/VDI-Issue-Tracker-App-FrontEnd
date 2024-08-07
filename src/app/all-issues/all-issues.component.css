@@ -1,3 +1,4 @@
+
 .table-container {
     display: flex;
     justify-content: center;
@@ -6,7 +7,7 @@
   }
   
   .table {
-    width: 80%; /* Adjust the width as desired */
+    width: 83%; /* Adjust the width as desired */
     margin: 20px auto; /* Center the table horizontally */
     border-collapse: collapse;
   }
@@ -31,13 +32,18 @@
     margin-right: 5px;
   }
   
-  .btn-primary {
+  /* .btn-primary {
     
     background-color: #007bff;
     color: #fff;
+  } */
+  .table-custom {
+    background-color: #67accf;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px; /* Optional: to give rounded corners */
   }
   
-  .btn-danger {
+  /* .btn-danger {
     background-color: #dc3545;
     color: #fff;
   }
@@ -45,4 +51,32 @@
   .btn-info {
     background-color: #17a2b8;
     color: #fff;
+  } */
+  .table-shadow {
+    background-color: #67accf;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   }
+  
+  /* no of impacts above 5 */
+  .text-red {
+    color: red;
+  }
+  
+
+  /* status colour change */
+  .status-open {
+    color: red;
+  }
+  
+  .status-close {
+    color: green;
+  }
+  
+  .status-in-progress {
+    color: orange;
+  }
+  
+  .text-red {
+    color: red;
+  }
+  

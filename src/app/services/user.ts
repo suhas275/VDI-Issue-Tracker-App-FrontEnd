@@ -1,10 +1,10 @@
 export class User {
-    associateId !:string;
+    associateId !:number;
     firstName !:string;
     lastName !:string;
     email!:string;
     contactNo !:string;
-    userName !:string;
+    userName !:string;  
     password !:string;
     confirmPassword !:string;
     //IssueType
@@ -15,7 +15,9 @@ export class User {
     destinationIP!:string;
     vpn!:string;
     connectivity!:string;
-    impactes!:string;
+    impactes !:number;
     status!:string;
     datetime!:Date;
+    roles!:string;
+  id: any;
 }

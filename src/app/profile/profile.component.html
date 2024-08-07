@@ -1,0 +1,38 @@
+
+<div class="container mt-5">
+  <h2 class="text-center">Profile</h2>
+  <form *ngIf="user" (ngSubmit)="onSubmit()">
+    <div class="form-group row">
+      <label for="associateId" class="col-sm-2 col-form-label">Associate ID</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" id="associateId" [(ngModel)]="user.associateId" name="associateId">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="userName" class="col-sm-2 col-form-label">Username</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" id="userName" [(ngModel)]="user.userName" name="userName">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="contactNo" class="col-sm-2 col-form-label">Contact Number</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" id="contactNo" [(ngModel)]="user.contactNo" name="contactNo">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="email" class="col-sm-2 col-form-label">Email</label>
+      <div class="col-sm-10">
+        <input type="email" class="form-control" id="email" [(ngModel)]="user.email" name="email">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="roles" class="col-sm-2 col-form-label">Roles</label>
+      <div class="col-sm-10">
+        <input type="text" readonly class="form-control-plaintext" id="roles" value="{{ user.roles }}">
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Save Changes</button>
+  </form>
+</div>
+

@@ -1,96 +1,40 @@
 import { User } from '../services/user';
-import {  FormsModule, NgForm } from '@angular/forms';
+import { FormsModule, NgForm } from '@angular/forms';
 import { CommonModule, JsonPipe } from '@angular/common';
 import { UserservieService } from '../services/user-service.service';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-
+import { HttpClient } from '@angular/common/http';
+import swal from 'sweetalert';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [FormsModule, CommonModule,JsonPipe,
- ],
+  imports: [FormsModule, CommonModule, JsonPipe],
   templateUrl: './login.component.html',
-  styleUrl: './login.component.css'
+  styleUrl: './login.component.css',
 })
-
-
 export class LoginComponent {
- 
-//   user: User = new User();
-//   constructor( private userservieService: UserservieService,private router: Router) {}
-//   // successmessage
-//  showsuccessMessage = false;
-//   userlogin() {
-//     console.log(this.user);
-//     this.userservieService.registeruser(this.user);
-//   }
+  user: User = new User();
 
-//   // template forms validation
-// isFormSubmited: boolean = false ;
+  constructor(private userserviceService: UserservieService, private router: Router, private http: HttpClient) { }
 
-//   User: any = {
-//     userName: '',
-//     password:''
-//   }
+  userlogin(data: any) {  
+    this.userserviceService.login(this.user).subscribe((result: any) => {
+        if (result.success) {
+          swal('Success', 'Login successful', 'success');
+          
+          localStorage.setItem("token", result.token);
+          localStorage.setItem("user", JSON.stringify(result.user));
+          localStorage.setItem('associateId', result.user.associateId); // Store associateId in localStorage
 
-//   // password validation
- 
-  
+          this.userserviceService.loggedIn.next(true); // Update login state in UserserviceService
+          
+          this.router.navigate(['/homepage']); 
+        } else {
+          swal('Error', 'Invalid username or password', 'error');
+        }  
+      });
+}
 
-// // PASSWORD field validation
-
-//   myInputValue = ''; // Bind this to your input field using [(ngModel)]
-
-//   // Validate lowercase letters
-//   hasLowercase(): boolean {
-//     const lowerCaseLetters = /[a-z]/g;
-//     return this.myInputValue.match(lowerCaseLetters) !== null;
-//   }
-
-//   // Validate capital letters
-//   hasUppercase(): boolean {
-//     const upperCaseLetters = /[A-Z]/g;
-//     return this.myInputValue.match(upperCaseLetters) !== null;
-//   }
-
-//   // Validate numbers
-//   hasNumber(): boolean {
-//     const numbers = /[0-9]/g;
-//     return this.myInputValue.match(numbers) !== null;
-//   }
-
-//   // Validate length
-//   hasMinimumLength(): boolean {
-//     return this.myInputValue.length >= 8;
-//   }
-
-
-
-//   onSubmit(form: NgForm) {
-//     const isFormValid = form.form.valid;
-//     this.isFormSubmited = true;  
-//       this.showsuccessMessage= false;
-//         this.showsuccessMessage= true;
-//         setTimeout(() => {
-//           this.router.navigate(['/raiseissue']); // Redirect to home page after delay
-//         }, 2000); // Set delay to 1 seconds (1000 milliseconds)
-      
-    
-//   }
-// --------------------------------------
-user:User =new User();
- 
-  // constructor(private userservieService: UserservieService){}
- constructor( private userservieService: UserservieService,private router: Router) {}
-
-  userlogin(data:any){
- 
-    this.userservieService.login(data);
-    this.router.navigate(['/raiseissue']);
-  }
-  
-
-  
 }
