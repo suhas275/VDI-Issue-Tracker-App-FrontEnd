@@ -5,7 +5,7 @@ import {
   RouterLinkActive,
   RouterOutlet,
 } from '@angular/router';
-import { UserservieService } from '../services/user-service.service';
+import { UserService } from '@core/services/user-service.service';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -20,12 +20,12 @@ import { CommonModule } from '@angular/common';
 export class NavbarComponent implements OnInit {
   isLoggedIn = false;
   constructor(
-    private userservieService: UserservieService,
+    private userService: UserService,
     private router: Router
   ) { }
 
   ngOnInit(): void {
-    this.userservieService.isLoggedIn.subscribe((loggedIn: boolean) => {
+    this.userService.isLoggedIn.subscribe((loggedIn: boolean) => {
       this.isLoggedIn = loggedIn;
     });
     // Check the login state on initialization if localStorage is available
@@ -38,7 +38,7 @@ export class NavbarComponent implements OnInit {
   }
 
   logout() {
-    this.userservieService.logout();
+    this.userService.logout();
   }
   private isLocalStorageAvailable(): boolean {
     try {

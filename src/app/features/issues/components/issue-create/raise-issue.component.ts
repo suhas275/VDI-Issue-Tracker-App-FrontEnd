@@ -1,9 +1,9 @@
 
 import { Component, OnInit } from '@angular/core';
-import { User } from '../services/user';
+import { User } from '@core/services/user';
 import { CommonModule, JsonPipe } from '@angular/common';
 import { FormsModule, NgForm } from '@angular/forms';
-import { UserservieService } from '../services/user-service.service';
+import { UserService } from '@core/services/user-service.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
@@ -18,7 +18,7 @@ export class RaiseIssueComponent implements OnInit {
   currentTime: Date = new Date();
   showSuccessMessage = false;
   showErrorForDuplicateIssue = false;
-  isFormSubmited: boolean = false;
+  isFormSubmited = false;
 
   User: any = {
     associateId: '',
@@ -32,27 +32,34 @@ export class RaiseIssueComponent implements OnInit {
     impactes: 1
   };
 
-  constructor(private userservieService: UserservieService, private route: ActivatedRoute, private router: Router) {}
+  constructor(private userService: UserService, private route: ActivatedRoute, private router: Router) {}
 
   ngOnInit(): void {
-    const storedAssociateId = localStorage.getItem('associateId');
-    if (storedAssociateId) {
-      this.User.associateId = storedAssociateId;
+    if (typeof localStorage !== 'undefined') {
+      const storedAssociateId = localStorage.getItem('associateId');
+      if (storedAssociateId) {
+        this.User.associateId = storedAssociateId;
+      }
     }
     this.User.datetime = new Date(); // Set the current date and time
   }
 
   raiseIssue() {
-    this.userservieService.raiseIssue(this.User)
+    console.log('Submitting issue:', this.User);
+    this.isFormSubmited = true;
+    
+    this.userService.raiseIssue(this.User)
       .subscribe(
-        (response) => {
+        (response: any) => {
           console.log('Issue raised successfully:', response);
           this.showSuccessMessage = true;
           setTimeout(() => {
             this.showSuccessMessage = false;
-          }, 4000);
+            // Navigate to all issues page after successful submission
+            this.router.navigate(['/allissues']);
+          }, 2000);
         },
-        (error) => {
+        (error: any) => {
           console.error('Error raising issue:', error);
           this.showErrorForDuplicateIssue = true;
           setTimeout(() => {
@@ -82,10 +89,5 @@ export class RaiseIssueComponent implements OnInit {
   // Validate length
   hasMinimumLength(): boolean {
     return this.myInputValue.length >= 8;
-  }
-
-  // Submit Button
-  onSubmit(form: NgForm) {
-
   }
 }

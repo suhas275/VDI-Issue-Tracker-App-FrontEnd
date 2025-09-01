@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { UserservieService } from '../services/user-service.service';
+import { UserService } from '@core/services/user-service.service';
 import swal from 'sweetalert';
 
 @Component({
@@ -14,7 +14,7 @@ import swal from 'sweetalert';
 export class ProfileComponent implements OnInit {
   user: any;
 
-  constructor(private userservieService: UserservieService) {}
+  constructor(private userService: UserService) {}
 
   ngOnInit() {
     this.loadUserData();
@@ -30,11 +30,13 @@ export class ProfileComponent implements OnInit {
   }
 
   onSubmit() {
-    this.userservieService.updateUser(this.user).subscribe(
-      (response) => {
+    this.userService.updateUser(this.user).subscribe(
+      (response: any) => {
         console.log('User updated successfully:', response);
         // Optionally, update the local storage with the new user data
-        localStorage.setItem('user', JSON.stringify(this.user));
+        if (typeof localStorage !== 'undefined') {
+          localStorage.setItem('user', JSON.stringify(this.user));
+        }
         // Show success message using SweetAlert
         swal("Success", "User updated successfully!", "success");
       },

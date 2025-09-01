@@ -1,7 +1,7 @@
-import { User } from '../services/user'; 
+import { User } from '@core/services/user'; 
 import { CommonModule, JsonPipe } from '@angular/common';
 import {  FormsModule, NgForm} from '@angular/forms';
-import { UserservieService } from '../services/user-service.service'; 
+import { UserService } from '@core/services/user-service.service'; 
 import { Component, } from '@angular/core';
 import { Router } from '@angular/router';
 
@@ -19,13 +19,13 @@ user: User = new User();
 showSuccessMessage = false;
 showErrorForDuplicateUser = false;
 
-constructor(private userservieService: UserservieService, private router: Router) {}
+constructor(private userService: UserService, private router: Router) {}
 
 userregister() {
-  this.userservieService.registerUser(this.user)
+  this.userService.registerUser(this.user)
     .subscribe(
-      (response) => {
-        // this.userservieService.setRegisteredAssociateId(this.user.associateId);// Store associateId
+      (response: any) => {
+        // this.userService.setRegisteredAssociateId(this.user.associateId);// Store associateId
     
         console.log('User registered successfully:', response);
         this.showSuccessMessage = true;
@@ -35,7 +35,7 @@ userregister() {
           this.router.navigate(['/login']); // Redirect to login page after successful registration
         }, 2000);
       },
-      (error) => {
+      (error: any) => {
         console.error('Error registering user:', error);
         if (error.error.msg === 'Username already exists' || error.error.msg === 'Email already exists') {
           this.showErrorForDuplicateUser = true;
@@ -50,7 +50,7 @@ userregister() {
 }
 
   // template forms validation
-isFormSubmited: boolean = false ;
+isFormSubmited = false ;
 
   User: any = {
     associateId:'',

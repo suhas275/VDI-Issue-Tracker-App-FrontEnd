@@ -2,8 +2,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
-import { User } from '../../services/user';
-import { UserservieService } from '../../services/user-service.service';
+import { User } from '@core/services/user';
+import { UserService } from '@core/services/user-service.service';
 import { CommonModule } from '@angular/common';
 import swal from 'sweetalert';
 import { FormBuilder, FormGroup, FormsModule } from '@angular/forms';
@@ -23,15 +23,15 @@ export class ViewIssueComponent implements OnInit {
     sameIssue: false
   };
 
-  constructor(private route: ActivatedRoute, private userservieService: UserservieService) {}
+  constructor(private route: ActivatedRoute, private userService: UserService) {}
 
   ngOnInit(): void {
     const issueId = this.route.snapshot.paramMap.get('id');
     if (issueId) {
-      this.userservieService.getIssueById(+issueId).subscribe(issue => {
+      this.userService.getIssueById(+issueId).subscribe((issue: any) => {
         this.issue = issue;
       });
-      this.userservieService.getCommentsByIssueId(+issueId).subscribe(comments => {
+      this.userService.getCommentsByIssueId(+issueId).subscribe((comments: any) => {
         this.comments = comments;
       });
     }
@@ -46,7 +46,7 @@ export class ViewIssueComponent implements OnInit {
       };
   
       // Add the comment to the backend
-      this.userservieService.addComment(this.issue.id, comment).subscribe(() => {
+      this.userService.addComment(this.issue.id, comment).subscribe(() => {
         // Add the comment to the local comments array
         this.comments.push(comment);
         console.log(comment);
@@ -54,13 +54,13 @@ export class ViewIssueComponent implements OnInit {
         // If the user is facing the same issue, increment the impactes count
         if (this.newComment.sameIssue && this.issue) {
           this.issue.impactes++;
-          this.userservieService.updateIssue(this.issue).subscribe(); // Update the issue in the backend
+          this.userService.updateIssue(this.issue).subscribe(); // Update the issue in the backend
         }
   
         // Reset the new comment form
         this.newComment.text = '';
         this.newComment.sameIssue = false;
-      }, error => {
+      }, (error: any) => {
         console.error('Error adding comment:', error);
         // Handle error appropriately
       });

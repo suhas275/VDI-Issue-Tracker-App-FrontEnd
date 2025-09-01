@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
-import { HomePageComponent } from './home-page/home-page.component';
-import { NavbarComponent } from './navbar/navbar.component';
+import { HomePageComponent } from './features/home/home-page.component';
+import { NavbarComponent } from './layout/components/navbar/navbar.component';
 
 @Component({
   selector: 'app-root',

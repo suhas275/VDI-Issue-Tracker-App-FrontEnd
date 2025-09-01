@@ -1,9 +1,9 @@
 
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { UserservieService } from '../services/user-service.service';
+import { UserService } from '@core/services/user-service.service';
 import { Router } from '@angular/router';
-import { User } from '../services/user';
+import { User } from '@core/services/user';
 import { FormsModule } from '@angular/forms';
 import swal from 'sweetalert';
 
@@ -22,9 +22,9 @@ export class AllIssueComponent implements OnInit {
   searchText = '';
   originalUsers: User[] = [];
   currentUser: User | null = null;
-  isAdmin: boolean = false;
+  isAdmin = false;
 
-  constructor(private userservieService: UserservieService, private router: Router) {}
+  constructor(private userService: UserService, private router: Router) {}
 
   ngOnInit(): void {
     this.getAllIssues();
@@ -32,17 +32,26 @@ export class AllIssueComponent implements OnInit {
   }
 
   private getAllIssues() {
-    this.userservieService.getAllIssues().subscribe((data) => {
-      this.users = data;
-      this.originalUsers = data;
-    });
+    console.log('Fetching all issues...');
+    this.userService.getAllIssues().subscribe(
+      (data: any) => {
+        console.log('Issues received:', data);
+        this.users = data;
+        this.originalUsers = data;
+      },
+      (error: any) => {
+        console.error('Error fetching issues:', error);
+      }
+    );
   }
 
   private loadCurrentUser() {
-    const userJson = localStorage.getItem('user');
-    if (userJson) {
-      this.currentUser = JSON.parse(userJson);
-      this.isAdmin = this.currentUser?.roles.includes('ADMIN_ROLES') || false;
+    if (typeof localStorage !== 'undefined') {
+      const userJson = localStorage.getItem('user');
+      if (userJson) {
+        this.currentUser = JSON.parse(userJson);
+        this.isAdmin = this.currentUser?.roles.includes('ADMIN_ROLES') || false;
+      }
     }
   }
 
@@ -77,7 +86,7 @@ export class AllIssueComponent implements OnInit {
       dangerMode: true,
     }).then((willDelete) => {
       if (willDelete) {
-        this.userservieService.deleteIssue(user.id).subscribe(() => {
+        this.userService.deleteIssue(user.id).subscribe(() => {
           this.users = this.users.filter(u => u.id !== user.id);
           swal('Success', 'Issue deleted successfully', 'success');
         }, () => {

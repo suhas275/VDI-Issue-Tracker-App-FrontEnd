@@ -8,8 +8,8 @@ import { Router } from '@angular/router';
 @Injectable({
   providedIn: 'root'
 })
-export class UserservieService {
-  constructor(private httpClient: HttpClient, private router: Router,private http: HttpClient) { }
+export class UserService {
+  constructor(private httpClient: HttpClient, private router: Router) { }
   public loggedIn = new BehaviorSubject<boolean>(false);
   get isLoggedIn() {
     return this.loggedIn.asObservable();
@@ -36,8 +36,10 @@ export class UserservieService {
   }   
 
   logout() { 
-    localStorage.removeItem("token");
-    localStorage.removeItem("user");
+    if (typeof localStorage !== 'undefined') {
+      localStorage.removeItem("token");
+      localStorage.removeItem("user");
+    }
     this.loggedIn.next(false); 
     this.router.navigate(['/login']);
   } 
@@ -48,7 +50,7 @@ export class UserservieService {
   }
   // All Issue
   getAllIssues(): Observable<User[]> {
-    return this.http.get<User[]>('http://localhost:8585/all'); 
+    return this.httpClient.get<User[]>('http://localhost:8585/all'); 
   }  
   
   //  Delete an Issue 

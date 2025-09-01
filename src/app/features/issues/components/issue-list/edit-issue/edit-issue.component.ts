@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
-import { UserservieService } from '../../services/user-service.service';
+import { UserService } from '@core/services/user-service.service';
 import swal from 'sweetalert';
-import { User } from '../../services/user';
+import { User } from '@core/services/user';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, FormsModule } from '@angular/forms';
 @Component({
@@ -25,7 +25,7 @@ export class EditIssueComponent implements OnInit {
     // datetime: ''
    
   }
-  constructor(private formBuilder: FormBuilder,private route: ActivatedRoute,private router: Router,private userservieService: UserservieService
+  constructor(private formBuilder: FormBuilder,private route: ActivatedRoute,private router: Router,private userService: UserService
   ) {}
 
   ngOnInit(): void {
@@ -34,7 +34,7 @@ export class EditIssueComponent implements OnInit {
     console.log(id);
     
     if (id) {
-      this.userservieService.getIssueById(+id).subscribe((data: User) => {
+      this.userService.getIssueById(+id).subscribe((data: User) => {
         this.User = data;
       }
     );
@@ -56,7 +56,7 @@ export class EditIssueComponent implements OnInit {
   }
   onSubmit(form: any) {
     if (form.valid) {
-      this.userservieService.updateIssue(this.User).subscribe(() => {
+      this.userService.updateIssue(this.User).subscribe(() => {
         swal('Success', 'Issue updated successfully', 'success');
         this.router.navigate(['/allissues']);
       }, () => {

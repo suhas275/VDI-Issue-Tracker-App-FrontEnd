@@ -1,8 +1,8 @@
 
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { UserservieService } from '../services/user-service.service';
-import { User } from '../services/user';
+import { UserService } from '@core/services/user-service.service';
+import { User } from '@core/services/user';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
  
@@ -18,7 +18,7 @@ export class AllUsersComponent implements OnInit{
   filteredUsers: User[] = [];  
   searchForm: FormGroup;
  
-  constructor(private userservieService: UserservieService, private fb: FormBuilder, private router: Router) {
+  constructor(private userService: UserService, private fb: FormBuilder, private router: Router) {
     this.searchForm = this.fb.group({
       firstName: [''],
       lastName: [''],
@@ -39,7 +39,7 @@ export class AllUsersComponent implements OnInit{
     } else {
       console.log('No user found in local storage');
     }
-    this.userservieService.getAllUsers().subscribe(data => {
+    this.userService.getAllUsers().subscribe((data: any) => {
       this.users = data;
       this.filteredUsers = data;
     });

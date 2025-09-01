@@ -1,7 +1,7 @@
-import { User } from '../services/user';
+import { User } from '@core/services/user';
 import { FormsModule, NgForm } from '@angular/forms';
 import { CommonModule, JsonPipe } from '@angular/common';
-import { UserservieService } from '../services/user-service.service';
+import { UserService } from '@core/services/user-service.service';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
@@ -17,18 +17,20 @@ import swal from 'sweetalert';
 export class LoginComponent {
   user: User = new User();
 
-  constructor(private userserviceService: UserservieService, private router: Router, private http: HttpClient) { }
+  constructor(private userService: UserService, private router: Router, private http: HttpClient) { }
 
   userlogin(data: any) {  
-    this.userserviceService.login(this.user).subscribe((result: any) => {
+    this.userService.login(this.user).subscribe((result: any) => {
         if (result.success) {
           swal('Success', 'Login successful', 'success');
           
-          localStorage.setItem("token", result.token);
-          localStorage.setItem("user", JSON.stringify(result.user));
-          localStorage.setItem('associateId', result.user.associateId); // Store associateId in localStorage
+          if (typeof localStorage !== 'undefined') {
+            localStorage.setItem("token", result.token);
+            localStorage.setItem("user", JSON.stringify(result.user));
+            localStorage.setItem('associateId', result.user.associateId); // Store associateId in localStorage
+          }
 
-          this.userserviceService.loggedIn.next(true); // Update login state in UserserviceService
+          this.userService.loggedIn.next(true); // Update login state in UserService
           
           this.router.navigate(['/homepage']); 
         } else {
