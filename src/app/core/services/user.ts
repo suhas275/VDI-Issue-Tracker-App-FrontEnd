@@ -15,7 +15,7 @@ export class User {
     destinationIP!:string;
     vpn!:string;
     connectivity!:string;
-    impactes !:number;
+    impacts !:number;
     status!:string;
     datetime!:Date;
     roles!:string;

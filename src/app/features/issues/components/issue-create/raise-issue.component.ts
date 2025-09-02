@@ -29,7 +29,7 @@ export class RaiseIssueComponent implements OnInit {
     userName: '',
     password: '',
     confirmPassword: '',
-    impactes: 1
+    impacts: 1
   };
 
   constructor(private userService: UserService, private route: ActivatedRoute, private router: Router) {}

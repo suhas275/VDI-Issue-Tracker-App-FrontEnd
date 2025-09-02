@@ -29,7 +29,7 @@
         <td>{{ user.issueType }}</td>
         <td>{{ user.issueSummary }}</td>
         <td [ngClass]="getStatusClass(user.status)">{{ user.status }}</td>
-        <td [ngClass]="{'text-red': user.impactes > 5}">{{ user.impactes }}</td>
+        <td [ngClass]="{'text-red': user.impacts > 5}">{{ user.impacts }}</td>
         <td>{{ user.datetime | date }}</td>
         <td>{{ user.datetime | date:'shortTime' }}</td>
         <td>

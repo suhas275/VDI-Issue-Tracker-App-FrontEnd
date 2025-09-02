@@ -51,9 +51,9 @@ export class ViewIssueComponent implements OnInit {
         this.comments.push(comment);
         console.log(comment);
   
-        // If the user is facing the same issue, increment the impactes count
+        // If the user is facing the same issue, increment the impacts count
         if (this.newComment.sameIssue && this.issue) {
-          this.issue.impactes++;
+          this.issue.impacts++;
           this.userService.updateIssue(this.issue).subscribe(); // Update the issue in the backend
         }
   
